@@ -1,0 +1,130 @@
+.projects_container {
+  color: #ffffff;
+  /* Important for horizontal carousel */
+  overflow: hidden;
+}
+
+.projects_container h1 {
+  font-weight: 400;
+  padding: 50px 20px 20px;
+  font-size: 30px;
+}
+
+/* Horizontal carousel */
+.projects_cards {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 25px 30px;
+  scrollbar-width: none;
+  /* Important for dragging */
+  cursor: grab;
+  user-select: none;
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+  /* Prevent scrollbar from taking space */
+  scrollbar-width: none;
+}
+.projects_cards:active {
+  cursor: grabbing;
+}
+.projects_cards::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual card */
+.projects_card {
+  flex: 0 0 85%;
+  max-width: 400px;
+  margin: 0;
+  padding: 15px 0;
+  border-radius: 10px;
+  /* Prevent card from shrinking */
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+}
+.projects_card:hover {
+  transform: scale(1.05);
+}
+
+/* Project image */
+.projects_img {
+  height: 200px;
+  width: 100%;
+  margin: 0 auto 25px;
+  overflow: hidden;
+}
+
+.projects_img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 25px;
+}
+
+/* Project details */
+.projects_detail {
+  padding: 0 15px;
+  line-height: 1.5;
+}
+
+.projects_detail h2 {
+  font-size: 30px;
+  font-weight: 100;
+  color: #ffffff;
+}
+
+.projects_detail p {
+  font-size: 15px;
+  font-weight: 100;
+  color: #707070;
+}
+
+/* Tags */
+.project_tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.project_single_tag {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* =========================
+   TABLET / DESKTOP
+   ========================= */
+
+@media (min-width: 768px) {
+  .projects_card {
+    flex: 0 0 45%;
+  }
+}
+
+/* =========================
+   LARGE DESKTOP
+   ========================= */
+
+@media (min-width: 992px) {
+  .projects_container h1 {
+    font-size: 40px;
+    padding: 50px 10px 20px 40px;
+  }
+
+  .projects_cards {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .projects_card {
+    flex: 0 0 30%;
+    max-width: none;
+    padding: 30px;
+  }
+}

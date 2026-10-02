@@ -1,0 +1,83 @@
+.contact_container {
+  padding: 20px 0;
+}
+.contact_container h1 {
+  color: #ffffff;
+  font-weight: 400;
+  padding: 30px 40px;
+  font-size: 30px;
+}
+.contact_subDiv {
+  display: flex;
+}
+.contact_office_div {
+  flex: 4;
+  padding: 0 30px;
+  line-height: 1.5;
+}
+.contact_office_heading {
+  color: #ffffff;
+}
+.contact_office_location {
+  color: #707070;
+  margin-top: 10px;
+}
+.contact_office_icon {
+  color: #707070;
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.contact_message_div {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contact_message_div input,
+.contact_message_div textarea {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #252b32;
+  border: 1px solid #94a3b8;
+  margin-right: 20px;
+  transition: border-color 0.2s ease;
+  color: #ffffff;
+}
+.contact_message_div input::placeholder,
+.contact_message_div textarea::placeholder {
+  color: #707070;
+}
+.contact_message_div input:focus,
+.contact_message_div textarea:focus {
+  border: 1px solid #3f464f;
+  outline: none;
+}
+.contact_message_div button {
+  background-color: #2de300;
+  padding: 10px 0;
+  margin-right: 20px;
+  border-radius: 10px;
+  color: #181c20;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+@media (min-width: 992px) {
+  .contact_container h1 {
+    font-size: 40px;
+  }
+  .contact_office_div {
+    padding: 0 40px;
+  }
+  .contact_office_heading {
+    font-size: 20px;
+  }
+  .contact_office_location {
+    font-size: 15px;
+  }
+  .contact_office_icon {
+    font-size: 30px !important;
+  }
+}

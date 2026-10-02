@@ -1,0 +1,163 @@
+/* =========================
+   Mobile First - Base Styles
+   ========================= */
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.companyName {
+  display: flex;
+  align-items: center;
+  padding: 7px 5px 5px 20px;
+}
+.companyName img {
+  height: 35px;
+  width: 35px;
+}
+
+.companyName_div {
+  display: flex;
+  flex-direction: column;
+}
+.companyName_div p {
+  color: #ffffff;
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+nav .title {
+  background-color: #000000;
+  font-size: 2rem;
+  margin: 1rem 0.5rem 0;
+  font-weight: 100;
+  text-decoration: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Hamburger menu */
+nav .menu {
+  display: flex;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 7px;
+  background-color: #2de300;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+nav .menu span {
+  height: 0.4rem;
+  width: 100%;
+  background-color: #000000;
+  border-radius: 0.2rem;
+}
+
+/* Mobile navigation */
+nav ul {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 0.5rem 0;
+  background-color: #000000;
+}
+
+nav ul.open {
+  display: flex;
+}
+
+nav ul li {
+  background-color: #000000;
+  list-style: none;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+nav ul li:hover {
+  transform: scale(1.05);
+}
+
+nav ul li a {
+  background-color: #000000;
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0.5rem;
+  margin: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 100;
+  font-size: 0.9rem;
+}
+
+nav ul li a:hover {
+  color: #2de300;
+}
+
+nav ul li button {
+  display: block;
+  color: #181c20;
+  background-color: #2de300;
+  padding: 0.5rem;
+  margin: 0.5rem auto;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+nav ul li button:hover {
+  background-color: #62e242;
+}
+
+/* =========================
+   Desktop - 992px and above
+   ========================= */
+
+@media (min-width: 992px) {
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Hide hamburger on desktop */
+  nav .menu {
+    display: none;
+  }
+
+  /* Show navigation links on desktop */
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  nav ul li {
+    width: auto;
+    text-align: left;
+  }
+
+  nav ul li a {
+    margin: 0.5rem 0.5rem 0 0.5rem;
+  }
+
+  nav ul li button {
+    margin: 0.5rem 2rem 0 0.5rem;
+  }
+}

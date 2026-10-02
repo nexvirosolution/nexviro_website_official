@@ -1,0 +1,108 @@
+.about_container {
+  padding: 50px 20px;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.about_container > h1 {
+  font-weight: 400;
+  padding-bottom: 30px;
+  font-size: 30px;
+  color: #ffffff;
+  padding-left: 20px;
+}
+
+/* Horizontal layout for mobile */
+.about_persons_container {
+  display: flex;
+  flex-direction: row; /* Forces horizontal alignment */
+  gap: 15px; /* Smaller gap for mobile screens */
+  overflow-x: auto; /* Allows swiping left/right on very small screens */
+  padding-bottom: 10px; /* Gives scrollbar some breathing room */
+}
+
+/* Optional: Hides the scrollbar for a cleaner look while keeping swipe functionality */
+.about_persons_container::-webkit-scrollbar {
+  display: none;
+}
+/* Center all content inside each person's card and prevent squishing */
+.about_singlePerson_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  /* NEW RULES FOR SCROLLING */
+  flex-shrink: 0; /* Prevents the card from shrinking */
+  min-width: 220px; /* Gives the text enough room so it doesn't wrap awkwardly */
+}
+
+.about_singlePerson_container img {
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  border: 3px solid #2de300; /* Slightly thicker border */
+  object-fit: cover;
+  margin-bottom: 15px; /* Adds space between image and name */
+}
+
+/* Typography adjustments to match the reference image */
+.about_singlePerson_container h1 {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+
+.about_designation {
+  color: #707070;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 0 15px 0;
+}
+
+.about_social_heading {
+  color: #2de300;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+/* Horizontally align the icon and the handle */
+.about_social_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  color: #2de300;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.about_social_div p {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .about_persons_container {
+    justify-content: center;
+  }
+}
+
+/* Desktop layout fixes */
+@media (min-width: 992px) {
+  .about_container > h1 {
+    font-size: 40px;
+  }
+
+  /* Apply the grid to the inner container holding the profiles, NOT the outer wrapper */
+  .about_persons_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto; /* Centers the grid on large screens */
+  }
+}

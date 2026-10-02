@@ -1,0 +1,70 @@
+.service_container {
+  color: #ffffff;
+}
+
+.service_container h1 {
+  font-weight: 400;
+  padding: 50px 10px 20px 20px;
+  font-size: 30px;
+}
+
+.service_card {
+  margin: 15px 25px 0 25px;
+  text-align: center;
+  border-radius: 10px;
+  border: 3px solid #3f464f;
+  padding: 15px 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.service_icon {
+  color: #2de300;
+  display: flex;
+  align-items: center;
+}
+
+.service_detail h2 {
+  font-size: 25px;
+  font-weight: 100;
+  color: #ffffff;
+}
+
+.service_detail p {
+  font-size: 15px;
+  font-weight: 100;
+  color: #707070;
+}
+
+.service_icon svg {
+  font-size: 40px;
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+  .service_container h1 {
+    font-size: 40px;
+  }
+  .service_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 20px 30px;
+  }
+
+  .service_card {
+    display: block;
+    margin: 0 20px;
+    padding: 30px;
+  }
+  .service_icon {
+    justify-content: center;
+  }
+  .service_container h1 {
+    grid-column: 1 / -1;
+  }
+  .service_icon svg {
+    font-size: 80px;
+  }
+}
