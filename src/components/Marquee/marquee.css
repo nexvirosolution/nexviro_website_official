@@ -1,0 +1,44 @@
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  padding: 20px 0;
+}
+.marquee_track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+.marquee_row {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.marquee_row li {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding-left: 56px;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+/* hexagon bullet, same shape as the logo's family */
+.marquee_row li::after {
+  content: "";
+  width: 12px;
+  height: 14px;
+  background: var(--green);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee_track {
+    animation: none;
+  }
+}

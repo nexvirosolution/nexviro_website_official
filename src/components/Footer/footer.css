@@ -1,142 +1,105 @@
-footer {
-  padding: 10px 0;
-  margin-top: 60px;
+.footer {
+  padding: clamp(56px, 8vw, 96px) var(--gutter) 28px;
+  border-top: 1px solid var(--line);
 }
-.footer_heading_div {
-  padding: 7px 5px 5px 20px;
+.footer_top {
+  display: grid;
+  gap: 40px;
 }
-.footer_heading_div img {
-  height: 35px;
-  width: 35px;
+.footer_brand p {
+  margin-top: 16px;
+  color: var(--muted);
+  max-width: 28ch;
 }
-.footer_companyName {
-  display: flex;
-}
-
-.footer_companyName_div {
-  display: flex;
-  flex-direction: column;
-}
-.footer_companyName_div p {
-  color: #ffffff !important;
-  margin-bottom: 20px;
-  margin-left: 10px;
+.footer_col {
+  display: grid;
+  gap: 10px;
+  align-content: start;
   font-size: 15px;
 }
-
-footer .footer_title {
-  font-size: 2rem;
-  margin: 0 0 0 0.5rem;
-  font-weight: 100;
-  text-decoration: none;
-  color: #ffffff;
-  cursor: pointer;
-}
-.footer_heading_div p {
-  color: #707070;
-}
-.footer_sub1_div {
-  color: #ffffff;
-  display: flex;
-  padding: 20px 20px;
-  gap: 5px;
-}
-.footer_sub1_div h1 {
-  font-size: 25px;
-  font-weight: 400;
-  margin-bottom: 10px;
-}
-.footer_sub1_div p {
-  margin-bottom: 10px;
-  font-weight: 200;
-}
-.footer_sub1_div span {
-  color: #707070;
-}
-.footer_sub2_div {
-  color: #ffffff;
-  padding: 0 20px;
-}
-.footer_sub2_div h1 {
-  font-size: 25px;
-  font-weight: 400;
-  margin: 15px 0;
-}
-.footer_icons {
-  color: #2de300;
-  margin: 0 5px 0 0;
-  font-size: 30px;
-}
-.footer_sub2_div input {
-  padding: 7px 10px;
-  width: 100%;
-
-  border-radius: 5px;
-  border: 1px solid #94a3b8;
-  transition: border-color 0.2s ease;
-}
-.footer_sub2_div input::placeholder {
-  color: #707070;
-}
-
-.footer_sub2_div input:focus {
-  border: 1px solid #3f464f;
-  outline: none;
-}
-
-.footer_sub2_div button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 7px 10px;
-  border-radius: 10px;
-  background-color: #2de300;
-  color: #252b32;
+.footer_col h4,
+.footer_news h4 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 17px;
   font-weight: 600;
-  border: none;
 }
-.footer_copyright_div {
-  margin-top: 15px;
-  line-height: 1.5;
-  text-align: center;
+.footer_col a,
+.footer_col span {
+  color: var(--muted);
+  transition: color 0.2s;
 }
-.footer_copyright_div p {
-  color: #707070;
-  font-size: 15px;
-}
-.footer_copyright_div span {
-  color: #ffffff;
-  font-size: 15px;
+.footer_col a:hover {
+  color: var(--green);
 }
 
-@media (min-width: 450px) {
-  .footer_sub1_div {
-    gap: 20%;
-  }
+.footer_news_row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.footer_news input {
+  flex: 1 1 180px;
+  min-width: 0;
+  padding: 12px 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  transition: border-color 0.25s;
+}
+.footer_news input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+.footer_news .btn {
+  padding: 12px 26px;
+  font-size: 15px;
+}
+.footer_socials {
+  display: flex;
+  gap: 8px;
+  margin-top: 22px;
+}
+.footer_socials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer_socials a:hover {
+  color: var(--green);
 }
 
-@media (min-width: 768px) {
-  .footer_main_div {
-    display: flex;
-  }
-  .footer_subMain_div {
-    display: flex;
-  }
-  .footer_copyright_div {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
+.footer_bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: clamp(40px, 6vw, 72px);
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+.footer_legal {
+  display: flex;
+  gap: 20px;
+}
+.footer_legal a:hover {
+  color: var(--cream);
+}
+
+@media (min-width: 640px) {
+  .footer_top {
+    grid-template-columns: 1fr 1fr;
   }
 }
-@media (min-width: 992px) {
-  .footer_main_div {
-    display: flex;
-    gap: 50px;
-  }
-  .footer_subMain_div {
-    display: flex;
-    gap: 50px;
-  }
-  .footer_sub1_div {
-    gap: 50px;
+@media (min-width: 1000px) {
+  .footer_top {
+    grid-template-columns: 1.3fr 0.7fr 1fr 1.3fr;
+    gap: 56px;
   }
 }

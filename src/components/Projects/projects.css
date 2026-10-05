@@ -1,130 +1,150 @@
-.projects_container {
-  color: #ffffff;
-  /* Important for horizontal carousel */
-  overflow: hidden;
+.projects {
+  --card-w: min(72vw, 330px);
+  --card-h: clamp(390px, 54vh, 430px);
 }
 
-.projects_container h1 {
-  font-weight: 400;
-  padding: 50px 20px 20px;
-  font-size: 30px;
-}
-
-/* Horizontal carousel */
-.projects_cards {
+.projects_head {
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 10px 25px 30px;
-  scrollbar-width: none;
-  /* Important for dragging */
-  cursor: grab;
-  user-select: none;
-  /* Smooth scrolling */
-  scroll-behavior: smooth;
-  /* Prevent scrollbar from taking space */
-  scrollbar-width: none;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(32px, 5vw, 56px);
 }
-.projects_cards:active {
+
+.carousel_controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.carousel_count {
+  min-width: 56px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+.carousel_btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s;
+}
+.carousel_btn:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: #000;
+}
+
+/* the stage holds every card on top of each other; framer-motion fans them out in 3D */
+.carousel_stage {
+  position: relative;
+  height: var(--card-h);
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+.carousel_stage:active {
   cursor: grabbing;
 }
-.projects_cards::-webkit-scrollbar {
-  display: none;
+.carousel_slot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  perspective: 1400px;
+  pointer-events: none;
 }
 
-/* Individual card */
-.projects_card {
-  flex: 0 0 85%;
-  max-width: 400px;
-  margin: 0;
-  padding: 15px 0;
-  border-radius: 10px;
-  /* Prevent card from shrinking */
-  transition: transform 0.3s ease;
-  box-sizing: border-box;
+.carousel_card {
+  width: var(--card-w);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  pointer-events: auto;
+  will-change: transform;
+  transition:
+    border-color 0.4s,
+    box-shadow 0.4s;
 }
-.projects_card:hover {
-  transform: scale(1.05);
+.carousel_card.is_active {
+  border-color: var(--green);
+  box-shadow: 0 0 60px rgba(45, 227, 0, 0.18);
 }
 
-/* Project image */
-.projects_img {
-  height: 200px;
-  width: 100%;
-  margin: 0 auto 25px;
+/* every card is exactly the same size */
+.carousel_img {
+  flex: 0 0 52%;
   overflow: hidden;
+  background: #000;
 }
-
-.projects_img img {
-  display: block;
+.carousel_img img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 25px;
+  object-fit: cover;
+  pointer-events: none;
 }
-
-/* Project details */
-.projects_detail {
-  padding: 0 15px;
-  line-height: 1.5;
-}
-
-.projects_detail h2 {
-  font-size: 30px;
-  font-weight: 100;
-  color: #ffffff;
-}
-
-.projects_detail p {
-  font-size: 15px;
-  font-weight: 100;
-  color: #707070;
-}
-
-/* Tags */
-.project_tags {
+.carousel_detail {
+  flex: 1;
+  min-height: 0;
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+}
+.carousel_detail {
+  transition: opacity 0.4s;
+}
+.carousel_card:not(.is_active) .carousel_detail {
+  opacity: 0;
+}
+.carousel_detail h3 {
+  font-size: 22px;
+}
+.carousel_detail p {
+  color: var(--muted);
+  font-size: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.project_tags {
+  margin-top: auto;
+  display: flex;
   flex-wrap: wrap;
+  gap: 8px;
 }
-
 .project_single_tag {
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #ffffff;
-  white-space: nowrap;
+  font-size: 12px;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
 }
 
-/* =========================
-   TABLET / DESKTOP
-   ========================= */
-
-@media (min-width: 768px) {
-  .projects_card {
-    flex: 0 0 45%;
-  }
+.carousel_dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
 }
-
-/* =========================
-   LARGE DESKTOP
-   ========================= */
-
-@media (min-width: 992px) {
-  .projects_container h1 {
-    font-size: 40px;
-    padding: 50px 10px 20px 40px;
-  }
-
-  .projects_cards {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
-  .projects_card {
-    flex: 0 0 30%;
-    max-width: none;
-    padding: 30px;
-  }
+.carousel_dot {
+  width: 32px;
+  height: 24px;
+  padding: 10px 0;
+  background: var(--line);
+  background-clip: content-box;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.carousel_dot.active {
+  background-color: var(--green);
 }

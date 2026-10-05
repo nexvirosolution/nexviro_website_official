@@ -5,9 +5,7 @@ import project1 from "../assets/project1.jpg";
 import project2 from "../assets/project2.jpg";
 import project3 from "../assets/project3.jpg";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import person1 from "../assets/person1.jpg";
-import person2 from "../assets/person2.jpg";
-import person3 from "../assets/person3.jpg";
+import profile from "../assets/profile.jpg";
 
 export const services = [
   {
@@ -80,35 +78,46 @@ export const projects = [
     },
   },
 ];
+
 export const abouts = [
   {
     id: "1",
-    img: person1,
-    name: "Alex Carter",
+    img: profile,
+    name: "Mohib",
     designation: "CEO",
     social: {
       icon: InstagramIcon,
-      link: "@alex_carter",
+      link: "@Mohib",
     },
   },
   {
     id: "2",
-    img: person2,
-    name: "Maya Chen",
+    img: profile,
+    name: "Hamza",
     designation: "CTO",
     social: {
       icon: InstagramIcon,
-      link: "@maya_chen",
+      link: "@Hamza",
     },
   },
   {
     id: "3",
-    img: person3,
-    name: "Liam O'Connel",
+    img: profile,
+    name: "Danish",
     designation: "Head of Growth",
     social: {
       icon: InstagramIcon,
-      link: "@liam_connel",
+      link: "@Danish",
+    },
+  },
+  {
+    id: "4",
+    img: profile,
+    name: "Kinza",
+    designation: "Head of Design",
+    social: {
+      icon: InstagramIcon,
+      link: "@kinza",
     },
   },
 ];

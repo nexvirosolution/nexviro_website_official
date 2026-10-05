@@ -1,0 +1,26 @@
+.scroll_progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--green);
+  transform-origin: left;
+  z-index: 60;
+}
+
+.cursor_glow {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cursor_glow {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45, 227, 0, 0.1), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}

@@ -1,0 +1,11 @@
+.scramble {
+  position: relative;
+  display: block;
+}
+.scramble_ghost {
+  visibility: hidden;
+}
+.scramble_live {
+  position: absolute;
+  inset: 0;
+}

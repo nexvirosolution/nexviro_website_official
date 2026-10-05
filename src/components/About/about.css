@@ -1,108 +1,182 @@
-.about_container {
-  padding: 50px 20px;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
+.team_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);   /* 4 small cards per row */
+  gap: 16px;
+  margin-top: clamp(24px, 5vw, 48px);
 }
 
-.about_container > h1 {
-  font-weight: 400;
-  padding-bottom: 30px;
-  font-size: 30px;
-  color: #ffffff;
-  padding-left: 20px;
+/* responsive fallback */
+@media (max-width: 900px) {
+  .team_grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .team_grid { grid-template-columns: 1fr; }
 }
 
-/* Horizontal layout for mobile */
-.about_persons_container {
-  display: flex;
-  flex-direction: row; /* Forces horizontal alignment */
-  gap: 15px; /* Smaller gap for mobile screens */
-  overflow-x: auto; /* Allows swiping left/right on very small screens */
-  padding-bottom: 10px; /* Gives scrollbar some breathing room */
+/* every card is the same 4:5 box, whatever the photo's own shape */
+.team_card {
+  aspect-ratio: 4 / 5;
+}
+.team_tilt {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--line);
+  transition: border-color 0.4s;
+  will-change: transform;
+}
+.team_card:hover .team_tilt {
+  border-color: var(--green);
 }
 
-/* Optional: Hides the scrollbar for a cleaner look while keeping swipe functionality */
-.about_persons_container::-webkit-scrollbar {
-  display: none;
+/* photo starts as a green-tinted mono image, and turns to full colour on hover */
+.team_photo {
+  position: absolute;
+  inset: 0;
 }
-/* Center all content inside each person's card and prevent squishing */
-.about_singlePerson_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-
-  /* NEW RULES FOR SCROLLING */
-  flex-shrink: 0; /* Prevents the card from shrinking */
-  min-width: 220px; /* Gives the text enough room so it doesn't wrap awkwardly */
-}
-
-.about_singlePerson_container img {
-  height: 140px;
-  width: 140px;
-  border-radius: 50%;
-  border: 3px solid #2de300; /* Slightly thicker border */
+.team_photo img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  margin-bottom: 15px; /* Adds space between image and name */
+  filter: grayscale(1) contrast(1.05) brightness(0.85);
+  transition:
+    filter 0.5s,
+    transform 0.8s var(--ease);
+}
+.team_photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--green);
+  mix-blend-mode: multiply;
+  opacity: 0.45;
+  transition: opacity 0.5s;
+}
+@media (hover: hover) {
+  .team_card:hover .team_photo img {
+    filter: grayscale(0) brightness(1);
+    transform: scale(1.04);
+  }
+  .team_card:hover .team_photo::after {
+    opacity: 0;
+  }
 }
 
-/* Typography adjustments to match the reference image */
-.about_singlePerson_container h1 {
-  color: #ffffff;
-  font-size: 22px;
+.team_glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* a scan line sweeps down the card */
+.team_scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  box-shadow: 0 0 18px var(--green);
+  opacity: 0;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .team_card:hover .team_scan {
+    opacity: 1;
+    animation: team_scan 1.8s linear infinite;
+  }
+}
+@media (hover: none) {
+  .team_scan {
+    opacity: 0.55;
+    animation: team_scan 3.2s linear infinite;
+  }
+}
+@keyframes team_scan {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+/* viewfinder corners — smaller for the smaller cards */
+.team_corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 0 solid var(--green);
+  pointer-events: none;
+  transition:
+    inset 0.35s var(--ease),
+    width 0.35s var(--ease),
+    height 0.35s var(--ease);
+}
+.team_corner.tl {
+  top: 8px;
+  left: 8px;
+  border-top-width: 2px;
+  border-left-width: 2px;
+}
+.team_corner.tr {
+  top: 8px;
+  right: 8px;
+  border-top-width: 2px;
+  border-right-width: 2px;
+}
+.team_corner.bl {
+  bottom: 8px;
+  left: 8px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+.team_corner.br {
+  bottom: 8px;
+  right: 8px;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+}
+@media (hover: hover) {
+  .team_card:hover .team_corner {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* info block — scaled down for the smaller cards */
+.team_info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 36px 16px 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 25%, transparent);
+}
+.team_info h3 {
+  font-size: 1rem;
   font-weight: 600;
-  margin: 0 0 5px 0;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
 }
-
-.about_designation {
-  color: #707070;
-  font-size: 14px;
-  font-weight: 400;
-  margin: 0 0 15px 0;
+.team_role {
+  margin: 2px 0 8px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
-
-.about_social_heading {
-  color: #2de300;
-  font-size: 13px;
-  font-weight: 500;
-  margin: 0 0 8px 0;
-}
-
-/* Horizontally align the icon and the handle */
-.about_social_div {
+.team_social {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 6px;
-  color: #2de300;
-  font-size: 14px;
-  font-weight: 500;
+  gap: 4px;
+  color: var(--green);
+  font-size: 0.65rem;
+  word-break: break-all;
 }
-
-.about_social_div p {
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .about_persons_container {
-    justify-content: center;
-  }
-}
-
-/* Desktop layout fixes */
-@media (min-width: 992px) {
-  .about_container > h1 {
-    font-size: 40px;
-  }
-
-  /* Apply the grid to the inner container holding the profiles, NOT the outer wrapper */
-  .about_persons_container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto; /* Centers the grid on large screens */
-  }
+.team_social svg {
+  width: 12px;
+  height: 12px;
 }
