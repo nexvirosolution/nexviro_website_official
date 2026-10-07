@@ -5,14 +5,15 @@ import "./contact.css";
 
 // Paste a form-service URL here (Formspree, Web3Forms, your own API...).
 // While it is empty, "Send message" opens the visitor's email app instead.
-const ENDPOINT = "";
+const ENDPOINT = "https://formspree.io/f/xzededwq";
 const EMAIL = "info@nexviro.studio";
 
 function Contact() {
   const [values, setValues] = useState({ name: "", email: "", details: "" });
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
-  const onChange = (e) => setValues((v) => ({ ...v, [e.target.name]: e.target.value }));
+  const onChange = (e) =>
+    setValues((v) => ({ ...v, [e.target.name]: e.target.value }));
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +30,10 @@ function Contact() {
     try {
       const res = await fetch(ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify(values),
       });
       if (!res.ok) throw new Error("Request failed");
@@ -43,7 +47,11 @@ function Contact() {
   return (
     <div className="contact section">
       <div className="contact_info">
-        <ScrambleText as="h2" className="section-title" text="Start a project" />
+        <ScrambleText
+          as="h2"
+          className="section-title"
+          text="Start a project"
+        />
         <p className="contact_lead">
           Tell us what you are building. We reply within one business day.
         </p>
@@ -69,7 +77,12 @@ function Contact() {
 
         <div className="contact_socials">
           {socials.map(({ label, href, icon: Icon }) => (
-            <a key={label} href={href} aria-label={label} className="contact_social">
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              className="contact_social"
+            >
               <Icon />
             </a>
           ))}
@@ -79,24 +92,49 @@ function Contact() {
       <form className="contact_form" onSubmit={onSubmit}>
         <label>
           Name
-          <input type="text" name="name" value={values.name} onChange={onChange} required autoComplete="name" />
+          <input
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={onChange}
+            required
+            autoComplete="name"
+          />
         </label>
         <label>
           Email
-          <input type="email" name="email" value={values.email} onChange={onChange} required autoComplete="email" />
+          <input
+            type="email"
+            name="email"
+            value={values.email}
+            onChange={onChange}
+            required
+            autoComplete="email"
+          />
         </label>
         <label>
           Project details
-          <textarea name="details" rows="5" value={values.details} onChange={onChange} required />
+          <textarea
+            name="details"
+            rows="5"
+            value={values.details}
+            onChange={onChange}
+            required
+          />
         </label>
 
         <button className="btn" type="submit" disabled={status === "sending"}>
-          {status === "sending" ? "Sending..." : status === "sent" ? "Message sent" : "Send message"}
+          {status === "sending"
+            ? "Sending..."
+            : status === "sent"
+              ? "Message sent"
+              : "Send message"}
         </button>
 
         <p className="contact_status" aria-live="polite">
           {status === "sent" && "Thanks. We will be in touch soon."}
-          {status === "error" && `Something went wrong. Email us at ${EMAIL} instead.`}
+          {status === "error" &&
+            `Something went wrong. Email us at ${EMAIL} instead.`}
         </p>
       </form>
     </div>
